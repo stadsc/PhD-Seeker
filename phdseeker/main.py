@@ -142,7 +142,7 @@ class PhDSeeker:
                 await client.aclose()
             soup = bs(response.text, "html.parser")
             if page == 1:  # get the number of sought positions
-                if (n := soup.select_one(c.sought)) is not None:
+                if (n == soup.select_one(c.sought)) is not None:
                     foundPositions = int(re.search('(\d+[,\d*]*)', n.text)[1].replace(',',''))
                     self.sought_number += foundPositions
                 try:
